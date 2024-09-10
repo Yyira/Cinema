@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
+<head >
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 
-<body onload="lod()">
-    <header>
+<body  onload="lod()">
+    <header id="header">
 
         <div class="title">
             <h1>RavFlix</h1>
@@ -19,14 +19,16 @@
             <a href="">Top 10</a>
             <a href="">Adicionar Filme</a>
         </nav>
-       <div class="search" id="search">
-        <img src="img/lupa.png" alt="lupa" onclick="extend()"></img>
+       <div class="hidden-search" id="search">
+        <img src="img/lupa.png" alt="lupa" onclick="extend()" class="show-img" id="open"></img> 
+        <input type="text" id="input" placeholder="Pesquisar"  onkeyup="search()">
+        <img src="img/x.png" alt="X" onclick="unExtend()" class="no-show-img" id="close"></img>
         
             
        </div>
    
     </header>
-    <main>
+    <main id="main">
         
     <section class="car">
         <div class="T2"><h1>Homem Aranha no Aranhaverso</h1></div>

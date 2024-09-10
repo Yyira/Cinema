@@ -10,9 +10,13 @@ let filmCard = [
     {
         title: 'Miranha',
         imageIndex: 'img/card-placeholder.jpg'
-    }
+    },
+   
 ]
 function lod() {
+    main = document.getElementById('main')
+    header = document.getElementById('header')
+    main.style.paddingTop = `${Number(header.clientHeight)}px`
     cards = document.getElementById('cards')
     for (c = 0; c < filmCard.length; c++) {
 
@@ -20,12 +24,26 @@ function lod() {
     }
 }
 function extend(){
-    divSearch = document.getElementById('search')
-    divSearch.innerHTML = '<img src="img/lupa.png" alt="lupa" onclick="unExtend()"></img><input type="text" id="input" placeholder="Pesquisar" onkeyup="search()">'
+    let divSearch = document.getElementById('search')
+    divSearch.classList.remove('hidden-search')
+    divSearch.classList.add('show-search')
+    let open = document.getElementById('open')
+    let close = document.getElementById('close')
+    open.classList.remove('show-img')
+    open.classList.add('no-show-img')
+    close.classList.remove('no-show-img')
+    close.classList.add('show-img')
 }
 function unExtend(){
-    divSearch = document.getElementById('search')
-    divSearch.innerHTML = '<img src="img/lupa.png" alt="lupa" onclick="extend()"></img>'
+    let divSearch = document.getElementById('search')
+    divSearch.classList.remove('show-search')
+    divSearch.classList.add('hidden-search')
+    let open = document.getElementById('open')
+    let close = document.getElementById('close')
+    open.classList.remove('no-show-img')
+    open.classList.add('show-img')
+    close.classList.remove('show-img')
+    close.classList.add('no-show-img')
 }
 function search() {
     input = document.getElementById('input')

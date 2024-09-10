@@ -2,15 +2,20 @@ body {
     margin: 0;
 
 }
+
 /*Header*/
 header {
-
     display: flex;
     flex-wrap: wrap;
-  
+    position: fixed;
+    width: 100%;
     background-color: #ffa600;
-    padding: 10px;
+
+    z-index: 2;
+
 }
+
+
 
 .title,
 nav {
@@ -18,37 +23,55 @@ nav {
     margin-top: auto;
     margin-bottom: auto;
     margin-left: 20px;
-   
+
 }
 
 nav a {
     margin: 10px;
-    padding: 10px;
+
     text-decoration: none;
     color: rgb(0, 0, 0);
 
 }
-.search{
+
+
+.hidden-search, .show-search{
     margin-left: auto;
     margin-right: 10px;
     display: flex;
     max-width: 100px;
     justify-content: flex-end;
-   
+    transition: 500ms;
 }
-.search img{
-    width: 50%;
-    height: 50%;
-    margin:  auto;
-   
+
+.hidden-search input {
+    width: 0;
+    height: 0;
+    border: 0;
+    padding: 0;
 }
-.search input{
+.show-search input {
     height: 50%;
     margin: auto;
-    margin-right: 20px; 
+    transition: 500ms;
+}
+.no-show-img{
+    width: 0;
+    height: 0;
+    padding: 0;
+    border: 0;
+    transition: 500ms;
+}
+.show-img{
+    width: 50%;
+    margin: auto;
+    cursor: pointer;
+    padding: 5px;
+    transition: 500ms;
 }
 /*Mains*/
 main {
+
     margin-left: 5%;
     margin-right: 5%;
 }
@@ -58,18 +81,20 @@ main {
     max-height: 400px;
     width: 100%;
 }
-.car img{
+
+.car img {
     width: 100%;
     max-height: 400px;
-    
+
 }
-.T2{
+
+.T2 {
     display: flex;
     padding-left: 1%;
     position: absolute;
     height: auto;
     width: 89%;
-    
+
 
 }
 
