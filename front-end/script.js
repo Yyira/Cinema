@@ -1,33 +1,29 @@
 
-movies = [
-    {   
-        title: 'Homem Aranha no Aranhaverso',
-        imageIndex: 'img/card-placeholder.jpg',
-        id: 1
-    },
-    {
-        title: 'Lolzin',
-        imageIndex: 'img/card-placeholder.jpg',
-        id: 2
-    },
-    {
-        title: 'Miranha',
-        imageIndex: 'img/card-placeholder.jpg',
-        id: 3
-    },
-   
-]
+const SERVER_URL = "http://localhost:3333/filmes"
+
+
+//
+
+
+
+
 function lod() {
     main = document.getElementById('main')
     header = document.getElementById('header')
     main.style.paddingTop = `${Number(header.clientHeight)}px`
     cards = document.getElementById('cards')
-    for (c = 0; c < movies.length; c++) {
 
-        cards.innerHTML += `<section><div class="leg"><h2>${movies[c].title}</h2></div><img src="${movies[c].imageIndex}" alt=""></section>`
+    fetch(SERVER_URL, { method: "GET" }).then((res) => res.json()).then(movie => {
+        console.log(movie[0][1].name)
+        for (index = 0; index < movie.length; index++) {
+
+            cards.innerHTML += `<section><div class="leg"><h2>${movie[index][1].name}</h2></div><img src="${movie[index][1].imageIndex}" alt=""></section>`
+        }
+
     }
+    )
 }
-function extend(){
+function extend() {
     let divSearch = document.getElementById('search')
     divSearch.classList.remove('hidden-search')
     divSearch.classList.add('show-search')
@@ -38,7 +34,7 @@ function extend(){
     close.classList.remove('no-show-img')
     close.classList.add('show-img')
 }
-function unExtend(){
+function unExtend() {
     let divSearch = document.getElementById('search')
     divSearch.classList.remove('show-search')
     divSearch.classList.add('hidden-search')
