@@ -2,7 +2,6 @@ body {
     margin: 0;
 
 }
-
 /*Header*/
 header {
     display: flex;
@@ -154,4 +153,26 @@ img {
     height: 100%;
     position: relative;
     opacity: 50%;
+}
+
+/*movie page*/
+
+.movie_main{
+    display: flex;
+    flex-wrap: wrap;
+   
+}
+.movie_img{
+    width: 30%;
+    margin-top: 20px;
+}
+.movie_img img{
+    width: 100%;
+    height: auto;
+}
+.movie_content{
+    width: 68%;
+    padding: 1%;
+    margin-top: 20px
+    
 }

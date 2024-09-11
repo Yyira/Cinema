@@ -1,23 +1,21 @@
 
 const SERVER_URL = "http://localhost:3333/filmes"
 
+//#region funções da pagina principal
 
-//
-
-
-
-
-function lod() {
+function loadMainPage() {
     main = document.getElementById('main')
     header = document.getElementById('header')
     main.style.paddingTop = `${Number(header.clientHeight)}px`
     cards = document.getElementById('cards')
 
     fetch(SERVER_URL, { method: "GET" }).then((res) => res.json()).then(movie => {
-        console.log(movie[0][1].name)
+
         for (index = 0; index < movie.length; index++) {
 
-            cards.innerHTML += `<section><div class="leg"><h2>${movie[index][1].name}</h2></div><img src="${movie[index][1].imageIndex}" alt=""></section>`
+            cards.innerHTML += `<section><a href="movie.html">
+                <div class="leg"><h2>${movie[index][1].name}</h2></div><img src="${movie[index][1].imageIndex}" alt="">
+            </a></section>`
         }
 
     }
@@ -48,10 +46,28 @@ function unExtend() {
 function search() {
     input = document.getElementById('input')
     cards.innerHTML = ''
-    for (c = 0; c < movies.length; c++) {
-        if (movies[c].title.toLowerCase().includes(input.value.toLowerCase())) {
-            cards.innerHTML += `<section><div class="leg"><h2>${movies[c].title}</h2></div><img src="${movies[c].imageIndex}" alt=""></section>`
-        }
-    }
+    fetch(SERVER_URL, { method: "GET" }).then((res) => res.json()).then(movie => {
 
+        for (index = 0; index < movie.length; index++) {
+            if (movie[index][1].name.toLowerCase().includes(input.value.toLowerCase())) {
+                cards.innerHTML += `<section><a href="movie.html">
+                <div class="leg"><h2>${movie[index][1].name}</h2></div><img src="${movie[index][1].imageIndex}" alt="">
+            </a></section>`
+            }
+
+        }
+
+    }
+    )
 }
+
+//#endregion
+
+//#region funções da pagina dos filmes
+function loadMoviePage(){
+    main = document.getElementById('main')
+    header = document.getElementById('header')
+    main.style.paddingTop = `${Number(header.clientHeight)}px`
+}
+
+//#endregion
