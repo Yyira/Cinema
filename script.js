@@ -2,15 +2,18 @@
 movies = [
     {   
         title: 'Homem Aranha no Aranhaverso',
-        imageIndex: 'img/card-placeholder.jpg'
+        imageIndex: 'img/card-placeholder.jpg',
+        id: 1
     },
     {
         title: 'Lolzin',
-        imageIndex: 'img/card-placeholder.jpg'
+        imageIndex: 'img/card-placeholder.jpg',
+        id: 2
     },
     {
         title: 'Miranha',
-        imageIndex: 'img/card-placeholder.jpg'
+        imageIndex: 'img/card-placeholder.jpg',
+        id: 3
     },
    
 ]
