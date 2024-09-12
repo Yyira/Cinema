@@ -176,3 +176,31 @@ img {
     margin-top: 20px
     
 }
+footer{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+   
+}
+footer a{
+  margin: auto 10%;
+  margin-top: 10%;  
+  text-decoration: none;
+    
+}
+.back{
+    color: white;
+    background-color: #ffa600;
+    border: solid 1px black;
+    
+}
+.youtube{
+   display: flex;
+   text-align: center;
+   background-color: white;
+   border: solid 3px #db0000;
+   color: #db0000;
+}
+.youtube img{
+    max-height: 50px;
+}
