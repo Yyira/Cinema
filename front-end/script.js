@@ -11,7 +11,8 @@ function header(){
 function loadMainPage() {
     header()
    
-    let car = document.getElementById('car') 
+    document.getElementById('a').setAttribute('href','top10.html')
+    document.getElementById('slideImg').setAttribute('src','img/car miranha.jpg')
     cards = document.getElementById('cards')
     document.getElementById('slideButton').style.height = `${car.clientHeight}px`
     fetch(SERVER_URL, { method: "GET" }).then((res) => res.json()).then(movie => {
