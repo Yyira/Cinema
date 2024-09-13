@@ -16,7 +16,7 @@ function loadMainPage() {
         console.log(movie[0].id)
         for (index = 0; index < movie.length; index++) {
 
-            cards.innerHTML += `<section><a href="movie.html" onclick="setMovie(${movie[index].id})">
+            cards.innerHTML += `<section class ="card"><a  href="movie.html" onclick="setMovie(${movie[index].id})">
                 <div class="leg"><h2>${movie[index].name}</h2></div><img src="${movie[index].imageIndex}" alt="">
             </a></section>`
         }
@@ -46,7 +46,7 @@ function unExtend() {
     close.classList.remove('show-img')
     close.classList.add('no-show-img')
     document.getElementById('input').value = ''
-    
+
     search()
 }
 function search() {
@@ -57,7 +57,7 @@ function search() {
 
         for (index = 0; index < movie.length; index++) {
             
-                cards.innerHTML += `<section><a href="movie.html" onclick="setMovie(${movie[index].id})">
+                cards.innerHTML += `<section class ="card"><a href="movie.html" onclick="setMovie(${movie[index].id})">
                 <div class="leg"><h2>${movie[index].name}</h2></div><img src="${movie[index].imageIndex}" alt="">
             </a></section>`
             
@@ -94,7 +94,7 @@ function loadMoviePage() {
                 footerLink.innerHTML = (
                     `
                     <a href="index.html"><button class="back" id="back"><h2>Voltar</h2></button></a>
-        <a href="${movie[index].data.link}" target="_blank" id="youtubeLink"><button class="youtube" id="youtube"><img src="img/youtube icon.png" alt="Youtube"><h2>Trailer no Youtube</h2></button></a>
+        <a href="${movie[0].link}" target="_blank" id="youtubeLink"><button class="youtube" id="youtube"><img src="img/youtube icon.png" alt="Youtube"><h2>Trailer no Youtube</h2></button></a>
                     `
                 )
             

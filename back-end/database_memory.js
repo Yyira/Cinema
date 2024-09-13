@@ -32,7 +32,7 @@ export class DatabaseMemory {
             name:'lol',
             imageIndex: 'img/card-placeholder.jpg',
             synopsis: 'lolzin',
-            assessment: 8,
+            assessment: 10,
             director: 'zed',
             link: "https://youtu.be/dQw4w9WgXcQ?si=ce1ySmcI3mRMwz3-"
         })
