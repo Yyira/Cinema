@@ -9,8 +9,13 @@ const database = new DatabaseMemory
 await server.register(cors, { 
 })
 
-server.get("/filmes", () =>{
-    return database.list()
+server.get("/filmes", (Request) =>{
+    const {inputName, inputId }= Request.query
+    
+    
+    return database.list(inputName,inputId);
+
+    
 })
 console.log(database.list())
 server.listen({

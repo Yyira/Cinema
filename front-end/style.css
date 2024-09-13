@@ -167,8 +167,8 @@ img {
     margin-top: 20px;
 }
 .movie_img img{
-    width: 100%;
-    height: auto;
+    width: auto;
+    max-height: 400px;
 }
 .movie_content{
     width: 68%;
@@ -203,4 +203,26 @@ footer a{
 }
 .youtube img{
     max-height: 50px;
+}
+
+/*Top 10*/
+a{
+    text-decoration: none;
+    color: black;
+}
+.top10Card{
+    width: 100%;
+    display: flex;
+    padding-top: 20px;
+}
+.top10Img{
+    width: 28%;
+    margin-right: 2%;
+}
+.top10Img img{
+    width: 80%;
+    
+}
+.top10Content{
+    width: 70%;
 }

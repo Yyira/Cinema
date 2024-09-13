@@ -2,19 +2,22 @@
 const SERVER_URL = "http://localhost:3333/filmes"
 
 //#region funções da pagina principal
-
-function loadMainPage() {
+function header(){
     main = document.getElementById('main')
     header = document.getElementById('header')
     main.style.paddingTop = `${Number(header.clientHeight)}px`
+}
+
+function loadMainPage() {
+    header()
     cards = document.getElementById('cards')
 
     fetch(SERVER_URL, { method: "GET" }).then((res) => res.json()).then(movie => {
+        console.log(movie[0].id)
+        for (index = 0; index < movie.length; index++) {
 
-        for (index = 0; index <= movie.length; index++) {
-
-            cards.innerHTML += `<section><a href="movie.html" onclick="setMovie(${movie[index][0]})">
-                <div class="leg"><h2>${movie[index][1].name}</h2></div><img src="${movie[index][1].imageIndex}" alt="">
+            cards.innerHTML += `<section><a href="movie.html" onclick="setMovie(${movie[index].id})">
+                <div class="leg"><h2>${movie[index].name}</h2></div><img src="${movie[index].imageIndex}" alt="">
             </a></section>`
         }
 
@@ -42,18 +45,22 @@ function unExtend() {
     open.classList.add('show-img')
     close.classList.remove('show-img')
     close.classList.add('no-show-img')
+    document.getElementById('input').value = ''
+    
+    search()
 }
 function search() {
     input = document.getElementById('input')
     cards.innerHTML = ''
-    fetch(SERVER_URL, { method: "GET" }).then((res) => res.json()).then(movie => {
+    fetch(`${SERVER_URL}?inputName=${input.value.toLowerCase()}`, { method: "GET" }, ).then((res) => res.json()).then(movie => { 
+       
 
         for (index = 0; index < movie.length; index++) {
-            if (movie[index][1].name.toLowerCase().includes(input.value.toLowerCase())) {
-                cards.innerHTML += `<section><a href="movie.html">
-                <div class="leg"><h2>${movie[index][1].name}</h2></div><img src="${movie[index][1].imageIndex}" alt="">
+            
+                cards.innerHTML += `<section><a href="movie.html" onclick="setMovie(${movie[index].id})">
+                <div class="leg"><h2>${movie[index].name}</h2></div><img src="${movie[index].imageIndex}" alt="">
             </a></section>`
-            }
+            
 
         }
 
@@ -65,34 +72,34 @@ function search() {
 
 //#region funções da pagina dos filmes
 function loadMoviePage() {
-    main = document.getElementById('main')
-    header = document.getElementById('header')
-    main.style.paddingTop = `${Number(header.clientHeight)}px`
+    header()
     movieContent = document.getElementById('movieContent')
     footerLink = document.getElementById('footerLink')
+    movieImage = document.getElementById('movieImg')
     id = localStorage.getItem(1)
-    fetch(SERVER_URL, { method: "GET" }).then((res) => res.json()).then(movie => {
+    fetch(`${SERVER_URL}?inputId=${id}`, { method: "GET" }).then((res) => res.json()).then(movie => {
 
 
-        for (index = 0; index < movie.length; index++) {
-
-            if (movie[index][0] == id) {
+        
+           
+           
+                movieImage.innerHTML = `<img src="${movie[0].imageIndex}" alt="">`
                 movieContent.innerHTML = (`
-                    <h1>${movie[index][1].name}</h1>
+                    <h1>${movie[0].name}</h1>
                     <h2>Sinopse:</h2>
-                    <p>${movie[index][1].synopsis}</p>
-                    <h2>Avaliação:${movie[index][1].assessment}/10</h2>
-                    <h2>Diretor:${movie[index][1].director}</h2>
+                    <p>${movie[0].synopsis}</p>
+                    <h2>Avaliação:${movie[0].assessment}/10</h2>
+                    <h2>Diretor:${movie[0].director}</h2>
                     `)
                 footerLink.innerHTML = (
                     `
                     <a href="index.html"><button class="back" id="back"><h2>Voltar</h2></button></a>
-        <a href="${movie[index][1].link}" id="youtubeLink"><button class="youtube" id="youtube"><img src="img/youtube icon.png" alt="Youtube"><h2>Trailer no Youtube</h2></button></a>
+        <a href="${movie[index].data.link}" target="_blank" id="youtubeLink"><button class="youtube" id="youtube"><img src="img/youtube icon.png" alt="Youtube"><h2>Trailer no Youtube</h2></button></a>
                     `
                 )
             
-            }
-        }
+            
+        
 
     })
 
@@ -101,4 +108,44 @@ function setMovie(id) {
     localStorage.setItem(1, id)
 
 }
-//#endregion
+//#region Top 10
+function top10Load(){
+    header()
+    main = document.getElementById('main')
+    fetch(SERVER_URL, { method: "GET" }).then((res) => res.json()).then(movie => {
+        movie.sort((a,b) =>{
+            if(a.assessment > b.assessment){
+                return -1;
+            }
+            if(a.assessment < b.assessment){
+                return 1;
+            }
+            if(a.assessment == b.assessment){
+                return 0;
+           
+            
+        }}) 
+        
+        for (index = 0; index < 10; index++) {
+            main.innerHTML += (
+                `
+                <a href="movie.html" onclick="setMovie(${movie[index].id})">
+                <section class="top10Card" id="top10Card">
+                 <div class="top10Img" id="top10Img">
+                <img src="${movie[index].imageIndex}" alt="miranha">
+            </div>
+            <div class="top10Content" id="top10Content">
+                <h1>TOP ${index + 1}</h1>
+                <h2>${movie[index].name}</h2>
+                <p>${movie[index].synopsis}</p>
+                <p>Diretor: ${movie[index].director}</p>
+                <h2>Nota:${movie[index].assessment}/10</h2>
+            </div>
+            </section>
+            </a>
+                `
+            ) 
+        }
+        
+    })
+}
