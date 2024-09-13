@@ -89,7 +89,7 @@ main {
     max-height: 400px;
     width: 100%;
     margin-bottom: 20px;
-    
+    display: flex;
 }
 
 .car img {
@@ -101,15 +101,29 @@ main {
 }
 
 .T2 {
+    color: white;
     display: flex;
     padding-left: 1%;
     position: absolute;
-    height: auto;
     width: 89%;
-
-
 }
-
+.slideButton{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    position: absolute;
+    width: 90%;
+}
+.slideButton button{
+    border: none;
+    background-color: #00000000;
+}
+.slideButton h1{
+    z-index: 1;
+    font-size: 60px;
+    color: white;
+}
 img {
     display: block;
 }
@@ -258,9 +272,13 @@ a{
     
 }
 .top10Content{
-    width: 70%;
+    width: 69%;
     background-color: white;
-    border: solid 4px #555E88;
+    border: solid 4px #000000;
     border-radius: 10px;
     height: min-content;
+    padding: 1%;
 }
+
+/* Slide */
+

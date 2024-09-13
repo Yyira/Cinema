@@ -10,8 +10,10 @@ function header(){
 
 function loadMainPage() {
     header()
+   
+    let car = document.getElementById('car') 
     cards = document.getElementById('cards')
-
+    document.getElementById('slideButton').style.height = `${car.clientHeight}px`
     fetch(SERVER_URL, { method: "GET" }).then((res) => res.json()).then(movie => {
         console.log(movie[0].id)
         for (index = 0; index < movie.length; index++) {
@@ -23,6 +25,7 @@ function loadMainPage() {
 
     }
     )
+    
 }
 function extend() {
     let divSearch = document.getElementById('search')
