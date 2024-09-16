@@ -2,19 +2,74 @@
 const SERVER_URL = "http://localhost:3333/filmes"
 
 //#region funções da pagina principal
-function header(){
-    main = document.getElementById('main')
-    header = document.getElementById('header')
+function header() {
+    let main = document.getElementById('main')
+    let header = document.getElementById('header')
     main.style.paddingTop = `${Number(header.clientHeight)}px`
 }
+function newRadio(radioNew) {
+    fetch(SERVER_URL, { method: "GET" }).then((res) => res.json()).then(movie => {
 
+        movie.sort((a, b) => {
+            if (a.assessment > b.assessment) {
+                return -1;
+            }
+            if (a.assessment < b.assessment) {
+                return 1;
+            }
+            if (a.assessment == b.assessment) {
+                return 0;
+
+
+            }
+        })
+        document.getElementById('sliderName').innerText = movie[radioNew].name
+    })
+}
+function slideFunc() {
+    fetch(SERVER_URL, { method: "GET" }).then((res) => res.json()).then(movie => {
+
+        movie.sort((a, b) => {
+            if (a.assessment > b.assessment) {
+                return -1;
+            }
+            if (a.assessment < b.assessment) {
+                return 1;
+            }
+            if (a.assessment == b.assessment) {
+                return 0;
+
+
+            }
+        })
+        let cont = 1
+        document.getElementById('radio1').checked = true
+        document.getElementById('sliderName').innerText = movie[0].name
+        document.getElementById('slide-box1').src = movie[0].imageIndex
+        document.getElementById('slide-box2').src = movie[1].imageIndex
+        document.getElementById('slide-box3').src = movie[2].imageIndex
+
+        function nextImg() {
+            cont++
+            if (cont > 3) {
+                cont = 1
+            }
+            document.getElementById(`radio${cont}`).checked = true
+            document.getElementById('sliderName').innerText = movie[cont - 1].name
+
+
+
+        }
+        setInterval(() => {
+            nextImg()
+        }, 5000)
+    })
+}
 function loadMainPage() {
     header()
-   
-    document.getElementById('a').setAttribute('href','top10.html')
-    document.getElementById('slideImg').setAttribute('src','img/car miranha.jpg')
+    slideFunc()
     cards = document.getElementById('cards')
-    document.getElementById('slideButton').style.height = `${car.clientHeight}px`
+
     fetch(SERVER_URL, { method: "GET" }).then((res) => res.json()).then(movie => {
         console.log(movie[0].id)
         for (index = 0; index < movie.length; index++) {
@@ -26,7 +81,7 @@ function loadMainPage() {
 
     }
     )
-    
+
 }
 function extend() {
     let divSearch = document.getElementById('search')
@@ -56,15 +111,15 @@ function unExtend() {
 function search() {
     input = document.getElementById('input')
     cards.innerHTML = ''
-    fetch(`${SERVER_URL}?inputName=${input.value.toLowerCase()}`, { method: "GET" }, ).then((res) => res.json()).then(movie => { 
-       
+    fetch(`${SERVER_URL}?inputName=${input.value.toLowerCase()}`, { method: "GET" },).then((res) => res.json()).then(movie => {
+
 
         for (index = 0; index < movie.length; index++) {
-            
-                cards.innerHTML += `<section class ="card"><a href="movie.html" onclick="setMovie(${movie[index].id})">
+
+            cards.innerHTML += `<section class ="card"><a href="movie.html" onclick="setMovie(${movie[index].id})">
                 <div class="leg"><h2>${movie[index].name}</h2></div><img src="${movie[index].imageIndex}" alt="">
             </a></section>`
-            
+
 
         }
 
@@ -84,26 +139,26 @@ function loadMoviePage() {
     fetch(`${SERVER_URL}?inputId=${id}`, { method: "GET" }).then((res) => res.json()).then(movie => {
 
 
-        
-           
-           
-                movieImage.innerHTML = `<img src="${movie[0].imageIndex}" alt="">`
-                movieContent.innerHTML = (`
+
+
+
+        movieImage.innerHTML = `<img src="${movie[0].imageIndex}" alt="">`
+        movieContent.innerHTML = (`
                     <h1>${movie[0].name}</h1>
                     <h2>Sinopse:</h2>
                     <p>${movie[0].synopsis}</p>
                     <h2>Avaliação:${movie[0].assessment}/10</h2>
                     <h2>Diretor:${movie[0].director}</h2>
                     `)
-                footerLink.innerHTML = (
-                    `
+        footerLink.innerHTML = (
+            `
                     <a href="index.html"><button class="back" id="back"><h2>Voltar</h2></button></a>
         <a href="${movie[0].link}" target="_blank" id="youtubeLink"><button class="youtube" id="youtube"><img src="img/youtube icon.png" alt="Youtube"><h2>Trailer no Youtube</h2></button></a>
                     `
-                )
-            
-            
-        
+        )
+
+
+
 
     })
 
@@ -113,23 +168,24 @@ function setMovie(id) {
 
 }
 //#region Top 10
-function top10Load(){
+function top10Load() {
     header()
     main = document.getElementById('main')
     fetch(SERVER_URL, { method: "GET" }).then((res) => res.json()).then(movie => {
-        movie.sort((a,b) =>{
-            if(a.assessment > b.assessment){
+        movie.sort((a, b) => {
+            if (a.assessment > b.assessment) {
                 return -1;
             }
-            if(a.assessment < b.assessment){
+            if (a.assessment < b.assessment) {
                 return 1;
             }
-            if(a.assessment == b.assessment){
+            if (a.assessment == b.assessment) {
                 return 0;
-           
-            
-        }}) 
-        
+
+
+            }
+        })
+
         for (index = 0; index < 10; index++) {
             main.innerHTML += (
                 `
@@ -148,8 +204,12 @@ function top10Load(){
             </section>
             </a>
                 `
-            ) 
+            )
         }
-        
+
     })
+}
+
+function movieAddLoad(){
+    header()
 }

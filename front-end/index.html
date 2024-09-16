@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head >
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="slider.css">
     <title>Document</title>
 </head>
 
-<body  onload="loadMainPage()" >
+<body onload="loadMainPage()">
     <header id="header">
 
         <div class="title">
@@ -17,45 +18,64 @@
         <nav>
             <a href="index.html">Início </a>
             <a href="top10.html">Top 10</a>
-            <a href="">Adicionar Filme</a>
+            <a href="movie add.html">Adicionar Filme</a>
         </nav>
-       <div class="hidden-search" id="search">
-        <img src="img/lupa.png" alt="lupa" onclick="extend()" class="show-img" id="open"></img> 
-        <input type="text" id="input" placeholder="Pesquisar"  onkeyup="search()">
-        <img src="img/x.png" alt="X" onclick="unExtend()" class="no-show-img" id="close"></img>
-        
-            
-       </div>
-   
+        <div class="hidden-search" id="search">
+            <img src="img/lupa.png" alt="lupa" onclick="extend()" class="show-img" id="open"></img>
+            <input type="text" id="input" placeholder="Pesquisar" onkeyup="search()">
+            <img src="img/x.png" alt="X" onclick="unExtend()" class="no-show-img" id="close"></img>
+
+
+        </div>
+
     </header>
     <main id="main">
+
+
+    <section class="slider" id="slide">
+            <div class="slider-content">
+                
+                <input type="radio" name="btn-radio" id="radio1" onclick="newRadio(0)">
+                <input type="radio" name="btn-radio" id="radio2" onclick="newRadio(1)">
+                <input type="radio" name="btn-radio" id="radio3" onclick="newRadio(2)">
+                <h1 class="sliderName" id="sliderName">Slider Name</h1>
+                <div class="slide-box fist" >
+                    <img src="img/car miranha.jpg" alt="img1" id="slide-box1">
+                </div>
+                <div class="slide-box" >
+                    <img src="img/car miranha2.jpg" alt="img2" id="slide-box2">
+                </div>
+                <div class="slide-box" >
+                    <img src="img/fallot_card.webp" alt="img3" id="slide-box3">
+                </div>
+
+                <div class="navigation-auto">
+                    <div class="auto-btn1"></div>
+                    <div class="auto-btn2"></div>
+                    <div class="auto-btn3"></div>
+                </div>
+                <div class="navigation-manual">
+                    <label for="radio1" class="manual-btn"></label>
+                    <br>
+                    <label for="radio2" class="manual-btn"></label>
+                    <br>
+                    <label for="radio3" class="manual-btn"></label>
+                </div>
+            
+            </div>
+    </section>
+
         
-    
-        <section class="car" id="car">
-            <div class="T2" id="t2">
-                <h1 id="slideName">Homem Aranha no Aranhaverso</h1>
-            </div>
-            <div class="slideButton" id="slideButton">
-                <button>
-                    <h1><</h1>
-                </button>
-                <button>
-                    <h1>></h1>
-                </button>
-            </div>
-            <a href="" id="a" class="slideA"> <img src="img/car miranha2.jpg" alt="" id="slideImg"></a>
-        </section>
-    
-    <section class="cards" id="cards">
-        <!--
+        <section class="cards" id="cards">
+            <!--
         <section>
             <div class="leg"><h2>Homem Aranha no Aranhaverso</h2></div>
             <img src="img/card-placeholder.jpg" alt="">
         </section>
         -->
-       
-    </section>
-        
+
+        </section>
+
     </main>
     <script src="script.js"></script>
 </body>

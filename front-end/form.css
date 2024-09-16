@@ -1,0 +1,25 @@
+form{
+    width: 90%;
+    margin: 0 auto;
+    background-color: #2B2C33;
+    padding: 10px;
+    margin-top: 10px;
+    border: solid 2px #555E88;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+}
+label{
+   
+    
+    display: block;
+    padding: 10px;
+    
+}
+input{
+    margin-left: 10px;
+    border: none;
+    border-radius: 10px;
+    width: 50%;
+    min-height: 50px;
+}
