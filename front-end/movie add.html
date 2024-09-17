@@ -20,26 +20,32 @@
             <a href="top10.html">Top 10</a>
             <a href="movie add.html">Adicionar Filme</a>
         </nav>
-       
+
     </header>
     <main id="main">
-        
-        <form action="" class="form">
+
+        <form class="form" autocomplete="off" id="form">
             <h1>Adicione um filme</h1>
-            <label for="">Digite o nome do filme</label>
-            <input type="text" id="nameId">
-            <label for="">Digite o nome diretor do filme</label>
-            <input type="text" id="diretorId">
-            <label for="">Digite a sinopse do filme</label>
-            <input type="text" id="synopsisId">
-            <label for="">Digite a nota do filme</label>
-            <input type="number" id="">
-            <label for="">Digite o link da imagem da capa do filme</label>
-            <input type="text">
-            <label for="">Digite o link do trailer do filme</label>
-            <input type="text">
+            <label for="name">Digite o nome do filme</label>
+            <input type="text" id="name" placeholder="ex: Homem Aranha" required>
+            <label for="director">Digite o nome diretor do filme</label>
+            <input type="text" id="director" placeholder="ex: Jonathan Nolan" required>
+            <label for="synopsis">Digite a sinopse do filme</label>
+            <input type="text" id="synopsis" placeholder="ex: Nesse filme..." required>
+            <label for="assessment">Digite a nota do filme</label>
+            <input type="number" id="assessment" placeholder="ex: 10" required>
+            <label for="imageIndex">Digite o link da imagem da capa do filme</label>
+            <input type="text" id="imageIndex" placeholder="ex: https..." required>
+            <label for="link">Digite o link do trailer do filme</label>
+            <input type="text" id="link" placeholder="ex: https..." required>
+            <br> <button type="submit">
+                <h1>Enviar filme</h1>
+            </button>
         </form>
+
     </main>
     <script src="script.js"></script>
+    <script src="add movie.js"></script>
 </body>
+
 </html>

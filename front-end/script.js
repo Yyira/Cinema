@@ -71,10 +71,10 @@ function loadMainPage() {
     cards = document.getElementById('cards')
 
     fetch(SERVER_URL, { method: "GET" }).then((res) => res.json()).then(movie => {
-        console.log(movie[0].id)
+
         for (index = 0; index < movie.length; index++) {
 
-            cards.innerHTML += `<section class ="card"><a  href="movie.html" onclick="setMovie(${movie[index].id})">
+            cards.innerHTML += `<section class ="card"><a  href="movie.html" onclick="setMovie(${String(movie[index].id)})">
                 <div class="leg"><h2>${movie[index].name}</h2></div><img src="${movie[index].imageIndex}" alt="">
             </a></section>`
         }
@@ -116,7 +116,7 @@ function search() {
 
         for (index = 0; index < movie.length; index++) {
 
-            cards.innerHTML += `<section class ="card"><a href="movie.html" onclick="setMovie(${movie[index].id})">
+            cards.innerHTML += `<section class ="card"><a href="movie.html" onclick="setMovie(${(movie[index].id)})">
                 <div class="leg"><h2>${movie[index].name}</h2></div><img src="${movie[index].imageIndex}" alt="">
             </a></section>`
 
@@ -135,8 +135,10 @@ function loadMoviePage() {
     movieContent = document.getElementById('movieContent')
     footerLink = document.getElementById('footerLink')
     movieImage = document.getElementById('movieImg')
-    id = localStorage.getItem(1)
-    fetch(`${SERVER_URL}?inputId=${id}`, { method: "GET" }).then((res) => res.json()).then(movie => {
+    let movieid = localStorage.getItem(1)
+
+
+    fetch(`${SERVER_URL}?inputId=${movieid}`, { method: "GET" }).then((res) => res.json()).then(movie => {
 
 
 
@@ -164,7 +166,10 @@ function loadMoviePage() {
 
 }
 function setMovie(id) {
+
+    
     localStorage.setItem(1, id)
+    
 
 }
 //#region Top 10
@@ -197,7 +202,7 @@ function top10Load() {
             <div class="top10Content" id="top10Content">
                 <h1>TOP ${index + 1}</h1>
                 <h2>${movie[index].name}</h2>
-                <p>${movie[index].synopsis}</p>
+                <p>${movie[index].synopsis.substring(0, 200)}${movie[index].synopsis.length > 200 ? '...' : ''}</p>
                 <p>Diretor: ${movie[index].director}</p>
                 <h2>Nota:${movie[index].assessment}/10</h2>
             </div>
@@ -210,6 +215,6 @@ function top10Load() {
     })
 }
 
-function movieAddLoad(){
+function movieAddLoad() {
     header()
 }

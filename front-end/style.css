@@ -164,9 +164,12 @@ img {
     margin-top: 20px;
     margin: auto;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 .movie_img img{
     width: auto;
+    max-width: 90%;
+    margin: 0 auto;
     max-height: 400px;
     border: solid 10px #555E88;
 }
@@ -187,10 +190,14 @@ footer{
 
    
 }
+footer button{
+    cursor: pointer;
+}
 footer a{
   margin: auto 10%;
   margin-top: 10%;  
   text-decoration: none;
+  cursor: pointer;
     
 }
 .back{
