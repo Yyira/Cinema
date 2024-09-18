@@ -2,6 +2,11 @@
 const SERVER_URL = "http://localhost:3333/filmes"
 
 //#region funções da pagina principal
+
+    
+  
+   
+
 function header() {
     let main = document.getElementById('main')
     let header = document.getElementById('header')
@@ -75,12 +80,12 @@ function loadMainPage() {
         for (index = 0; index < movie.length; index++) {
 
             cards.innerHTML += `<section class ="card"><a  href="movie.html" onclick="setMovie(${String(movie[index].id)})">
-                <div class="leg"><h2>${movie[index].name}</h2></div><img src="${movie[index].imageIndex}" alt="">
+                <div class="leg"><h2>${movie[index].name}</h2></div><img src="${movie[index].imageIndex}" alt="${movie[index].name}" onerror="this.onerror = null;'https://media.istockphoto.com/id/1500807425/pt/vetorial/image-not-found-icon-vector-design.jpg?s=612x612&w=0&k=20&c=5MzkyhRPAx0G3pl9-C7vLxPHcXxU4mOBay3d8Xkhdwg='">
             </a></section>`
         }
 
     }
-    )
+    ).catch(erro => {document.location.href = 'error.html'})
 
 }
 function extend() {
@@ -117,14 +122,14 @@ function search() {
         for (index = 0; index < movie.length; index++) {
 
             cards.innerHTML += `<section class ="card"><a href="movie.html" onclick="setMovie(${(movie[index].id)})">
-                <div class="leg"><h2>${movie[index].name}</h2></div><img src="${movie[index].imageIndex}" alt="">
+                <div class="leg"><h2>${movie[index].name}</h2></div><img src="${movie[index].imageIndex}" alt="${movie[index].name}" onerror="this.onerror = null;'https://media.istockphoto.com/id/1500807425/pt/vetorial/image-not-found-icon-vector-design.jpg?s=612x612&w=0&k=20&c=5MzkyhRPAx0G3pl9-C7vLxPHcXxU4mOBay3d8Xkhdwg='">
             </a></section>`
 
 
         }
 
     }
-    )
+    ).catch(erro => {document.location.href = 'error.html'})
 }
 
 //#endregion
@@ -162,7 +167,7 @@ function loadMoviePage() {
 
 
 
-    })
+    }).catch(erro => {document.location.href = 'error.html'})
 
 }
 function setMovie(id) {
@@ -176,7 +181,7 @@ function setMovie(id) {
 function top10Load() {
     header()
     main = document.getElementById('main')
-    fetch(SERVER_URL, { method: "GET" }).then((res) => res.json()).then(movie => {
+    fetch(SERVER_URL, { method: "GET" }).then((res) => res.json()).catch(erro => {document.location.href = 'error.html'}).then(movie => {
         movie.sort((a, b) => {
             if (a.assessment > b.assessment) {
                 return -1;

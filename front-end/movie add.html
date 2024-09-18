@@ -31,13 +31,13 @@
             <label for="director">Digite o nome diretor do filme</label>
             <input type="text" id="director" placeholder="ex: Jonathan Nolan" required>
             <label for="synopsis">Digite a sinopse do filme</label>
-            <input type="text" id="synopsis" placeholder="ex: Nesse filme..." required>
+            <textarea name="synopsis" id="synopsis" required placeholder="Neste filme nos vamos..."></textarea>
             <label for="assessment">Digite a nota do filme</label>
-            <input type="number" id="assessment" placeholder="ex: 10" required>
+            <input type="number" step="0.01" id="assessment" placeholder="ex: 10" required>
             <label for="imageIndex">Digite o link da imagem da capa do filme</label>
-            <input type="text" id="imageIndex" placeholder="ex: https..." required>
+            <input type="url" id="imageIndex" placeholder="ex: https..." required>
             <label for="link">Digite o link do trailer do filme</label>
-            <input type="text" id="link" placeholder="ex: https..." required>
+            <input type="url" id="link" placeholder="ex: https..." required>
             <br> <button type="submit">
                 <h1>Enviar filme</h1>
             </button>

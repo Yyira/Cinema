@@ -8,7 +8,8 @@ form.addEventListener('submit', (event) => {
     addmovie()
 });
 function addmovie() {
-
+    alert('Filme adicionado!')
+    document.location.href = 'index.html'
     let movieBody = {}
     for (field of document.getElementById('form').elements) {
         movieBody[field.id] = field.value
