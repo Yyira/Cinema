@@ -17,15 +17,18 @@
 .slider-content input{
     display: none;
 }
-.slide-box{
+.slide-box,.slide-box1{
+    min-width: 25%;
     width: 25%;
     height: 400px;
     position: relative;
     text-align: center;
 }
+
 .slide-box img{
     width: 100%;
-    height: 100%;
+    
+    
 }
 .navigation-manual, .navigation-auto{
     position: absolute;
@@ -52,10 +55,17 @@
 
 #radio1:checked ~ .navigation-auto .auto-btn1,
 #radio2:checked ~ .navigation-auto .auto-btn2,
-#radio3:checked ~ .navigation-auto .auto-btn3{
+#radio3:checked ~ .navigation-auto .auto-btn3,
+#radio4:checked ~ .navigation-auto .auto-btn4,
+#radio5:checked ~ .navigation-auto .auto-btn5,
+#radio6:checked ~ .navigation-auto .auto-btn6,
+#radio7:checked ~ .navigation-auto .auto-btn7,
+#radio8:checked ~ .navigation-auto .auto-btn8,
+#radio9:checked ~ .navigation-auto .auto-btn9,
+#radio10:checked ~ .navigation-auto .auto-btn10{
     background-color: gold;
 }
-.auto-btn1, .auto-btn2, .auto-btn3{
+.auto-btn1, .auto-btn2, .auto-btn3,.auto-btn4, .auto-btn5, .auto-btn6,.auto-btn7, .auto-btn8, .auto-btn9,.auto-btn10{
     background-color: white;
 }
 #radio1:checked ~ .fist{
@@ -67,6 +77,28 @@
 #radio3:checked ~ .fist{
     margin-left: -50%;
 }
+#radio4:checked ~ .fist{
+    margin-left: -75%;
+}
+#radio5:checked ~ .fist{
+    margin-left: -100%;
+}
+#radio6:checked ~ .fist{
+    margin-left: -125%;
+}
+#radio7:checked ~ .fist{
+    margin-left: -150%;
+}
+#radio8:checked ~ .fist{
+    margin-left: -175%;
+}
+#radio9:checked ~ .fist{
+    margin-left: -200%;
+}
+#radio10:checked ~ .fist{
+    margin-left: -225%;
+}
+
 
 .sliderName{
     position: absolute;

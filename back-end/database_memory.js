@@ -32,7 +32,7 @@ export class DatabaseMemory {
             name: 'lol',
             imageIndex: 'https://ecommerce.cdn.genera.com.br/uploads/2023/06/copia.png',
             synopsis: 'lolzin',
-            assessment: 10,
+            assessment: 7,
             director: 'zed',
             link: "https://youtu.be/dQw4w9WgXcQ?si=ce1ySmcI3mRMwz3-"
         })

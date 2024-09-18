@@ -3,9 +3,8 @@ const SERVER_URL = "http://localhost:3333/filmes"
 
 //#region funções da pagina principal
 
-    
-  
-   
+
+
 
 function header() {
     let main = document.getElementById('main')
@@ -48,15 +47,37 @@ function slideFunc() {
             }
         })
         let cont = 1
-        document.getElementById('radio1').checked = true
-        document.getElementById('sliderName').innerText = movie[0].name
-        document.getElementById('slide-box1').src = movie[0].imageIndex
-        document.getElementById('slide-box2').src = movie[1].imageIndex
-        document.getElementById('slide-box3').src = movie[2].imageIndex
+        sliderContent = document.getElementById('slider-content')
+        for (index = 0; index < movie.length; index++) {
+            sliderContent.innerHTML += (`
+                <input type="radio" name="btn-radio" id="radio${index + 1}" onclick="newRadio(${index})"></input>
+            `)
 
+        } sliderContent.innerHTML += '<h1 class="sliderName" id="sliderName">Slider Name</h1>'
+        sliderContent.innerHTML += `<div class="slide-box fist" >
+                    <img src="${movie[0].imageIndex}" alt="img1" id="slide-box1">
+                </div>`
+        document.getElementById('sliderName').innerText = movie[0].name
+        
+        for (index = 1; index < movie.length; index++) {
+            sliderContent.innerHTML += `<div class="slide-box">
+                    <img src="${movie[index].imageIndex}" alt="img${index + 1}" id="slide-box${index + 1}" style="width: 100%">
+                </div>`
+        }
+        sliderContent.innerHTML += `<div class="navigation-auto" id="navigation-auto"></div>`
+        navAuto = document.getElementById('navigation-auto')
+        for (index = 0; index < movie.length; index++) {
+            navAuto.innerHTML += `<div class="auto-btn${index + 1}"></div>`
+        }
+        sliderContent.innerHTML += `<div class="navigation-manual" id="navigation-manual"></div>`
+        navManual = document.getElementById('navigation-manual')
+        for (index = 0; index < movie.length; index++) {
+            navManual.innerHTML +=`<label for="radio${index+1}" class="manual-btn"></label>`
+        }
+        document.getElementById('radio1').checked = true
         function nextImg() {
             cont++
-            if (cont > 3) {
+            if (cont > movie.length) {
                 cont = 1
             }
             document.getElementById(`radio${cont}`).checked = true
@@ -85,7 +106,7 @@ function loadMainPage() {
         }
 
     }
-    ).catch(erro => {document.location.href = 'error.html'})
+    ).catch(erro => { document.location.href = 'error.html' })
 
 }
 function extend() {
@@ -129,7 +150,7 @@ function search() {
         }
 
     }
-    ).catch(erro => {document.location.href = 'error.html'})
+    ).catch(erro => { document.location.href = 'error.html' })
 }
 
 //#endregion
@@ -167,21 +188,21 @@ function loadMoviePage() {
 
 
 
-    }).catch(erro => {document.location.href = 'error.html'})
+    }).catch(erro => { document.location.href = 'error.html' })
 
 }
 function setMovie(id) {
 
-    
+
     localStorage.setItem(1, id)
-    
+
 
 }
 //#region Top 10
 function top10Load() {
     header()
     main = document.getElementById('main')
-    fetch(SERVER_URL, { method: "GET" }).then((res) => res.json()).catch(erro => {document.location.href = 'error.html'}).then(movie => {
+    fetch(SERVER_URL, { method: "GET" }).then((res) => res.json()).catch(erro => { document.location.href = 'error.html' }).then(movie => {
         movie.sort((a, b) => {
             if (a.assessment > b.assessment) {
                 return -1;
