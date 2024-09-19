@@ -189,7 +189,7 @@ function loadMoviePage() {
         <a href="${movie[0].link}" target="_blank" id="youtubeLink"><button class="youtube" id="youtube"><img src="img/youtube icon.png" alt="Youtube"><h2>Trailer no Youtube</h2></button></a>
                     `
         )
-        
+
         if (movie[0].favorite) {
             document.getElementById('star').src = 'img/star2.png'
         } else {
@@ -234,13 +234,13 @@ function setMovie(id) {
 
 }
 //#region Top 10
-function favoriteLoad(){
+function favoriteLoad() {
     header()
     main = document.getElementById('main')
     fetch(`${SERVER_URL}?favorite=true`, { method: "GET" }).then((res) => res.json()).catch(erro => { document.location.href = 'error.html' }).then(movie => {
         for (index = 0; index < movie.length; index++) {
             main.innerHTML += (
-            `<a href="movie.html" onclick="setMovie(${movie[index].id})">
+                `<a href="movie.html" onclick="setMovie(${movie[index].id})">
                 <section class="favoriteCard" id="favoriteCard">
                  <div class="favoriteImg" id="favoriteImg">
                 <img src="${movie[index].imageIndex}" alt="miranha">

@@ -1,7 +1,6 @@
 import { fastify } from "fastify";
 import cors from '@fastify/cors';
 import { DatabaseMemory } from "./database_memory.js";
-import { request } from "http";
 
 
 const server = fastify()
