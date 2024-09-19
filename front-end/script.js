@@ -148,9 +148,12 @@ function search() {
 
         for (index = 0; index < movie.length; index++) {
 
-            cards.innerHTML += `<section class ="card"><a href="movie.html" onclick="setMovie(${(movie[index].id)})">
-                <div class="leg"><h2>${movie[index].name}</h2></div><img src="${movie[index].imageIndex}" alt="${movie[index].name}" onerror="this.onerror = null;'https://media.istockphoto.com/id/1500807425/pt/vetorial/image-not-found-icon-vector-design.jpg?s=612x612&w=0&k=20&c=5MzkyhRPAx0G3pl9-C7vLxPHcXxU4mOBay3d8Xkhdwg='">
-            </a></section>`
+            cards.innerHTML += `<section class ="card"><a  href="movie.html" onclick="setMovie(${String(movie[index].id)})">
+            <div class="leg"><div class="starCard">
+            <img src="${movie[index].favorite? 'img/star2.png':'img/star.png'}" alt="starCard" id="starCard" ></div>
+            <h2>${movie[index].name}</h2></div>
+            <img src="${movie[index].imageIndex}" alt="${movie[index].name}" onerror="this.onerror = null;'https://media.istockphoto.com/id/1500807425/pt/vetorial/image-not-found-icon-vector-design.jpg?s=612x612&w=0&k=20&c=5MzkyhRPAx0G3pl9-C7vLxPHcXxU4mOBay3d8Xkhdwg='">
+        </a></section>`
 
 
         }
