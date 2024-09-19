@@ -9,18 +9,29 @@
 </head>
 
 <body onload="top10Load()">
+    <div class="effect" id="effect"></div> <section class="side" id="side">
+        
+        <nav>
+            <img src="img/x2.png" alt="" onclick="sideOff()">
+            <a href="index.html"><h2>Início</h2> </a>
+            <a href="top10.html"><h2>Top 10</h2></a>
+            <a href="movie add.html"><h2>Adicionar Filme</h2></a>
+            <a href="favorite.html"><h2>Favoritos</h2></a>
+        </nav>
+    </section>
     <header id="header">
-
+        <div class="menu"><img src="img/menu.png" alt="menu icon" onclick="sideOn()"></div>
         <div class="title">
             <h1><a href="index.html">RavFlix</a></h1>
         </div>
-        <nav>
-            <a href="index.html">Início </a>
-            <a href="top10.html">Top 10</a>
-            <a href="movie add.html">Adicionar Filme</a>
-            <a href="favorite.html">Favoritos</a>
-        </nav>
+        
+        <div class="hidden-search" id="search">
+            <img src="img/lupa.png" alt="lupa" onclick="extend()" class="show-img" id="open"></img>
+            <input type="text" id="input" placeholder="Pesquisar" onkeyup="search()" autocomplete="off">
+            <img src="img/x.png" alt="X" onclick="unExtend()" class="no-show-img" id="close"></img>
 
+
+        </div>
 
     </header>
     <main class="movie_main" id="main">

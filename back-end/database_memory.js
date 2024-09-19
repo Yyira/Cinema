@@ -36,17 +36,8 @@ export class DatabaseMemory {
                 favorite: false
             })
         }
-        if (this.#movies.get('4') == undefined) {
-            this.#movies.set('4', {
-                name: 'lol',
-                imageIndex: 'https://ecommerce.cdn.genera.com.br/uploads/2023/06/copia.png',
-                synopsis: 'lolzin',
-                assessment: 7,
-                director: 'zed',
-                link: "https://youtu.be/dQw4w9WgXcQ?si=ce1ySmcI3mRMwz3-",
-                favorite: false
-            })
-        }
+        
+        
 
 
     }

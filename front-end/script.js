@@ -309,3 +309,12 @@ function top10Load() {
 function movieAddLoad() {
     header()
 }
+function sideOff(){
+    document.getElementById('side').style= "display: none;"
+    document.getElementById('effect').style= "display: none;"
+    
+}
+function sideOn(){
+    document.getElementById('side').style= "display: block;"
+    document.getElementById('effect').style= "display: block;"
+}
