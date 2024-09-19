@@ -48,7 +48,7 @@ function slideFunc() {
         })
         let cont = 1
         sliderContent = document.getElementById('slider-content')
-        for (index = 0; index < movie.length; index++) {
+        for (index = 0; index < movie.length && index < 11; index++) {
             sliderContent.innerHTML += (`
                 <input type="radio" name="btn-radio" id="radio${index + 1}" onclick="newRadio(${index})"></input>
             `)
@@ -58,21 +58,21 @@ function slideFunc() {
                     <img src="${movie[0].imageIndex}" alt="img1" id="slide-box1">
                 </div>`
         document.getElementById('sliderName').innerText = movie[0].name
-        
-        for (index = 1; index < movie.length; index++) {
+
+        for (index = 0; index < movie.length && index < 11; index++) {
             sliderContent.innerHTML += `<div class="slide-box">
                     <img src="${movie[index].imageIndex}" alt="img${index + 1}" id="slide-box${index + 1}" style="width: 100%">
                 </div>`
         }
         sliderContent.innerHTML += `<div class="navigation-auto" id="navigation-auto"></div>`
         navAuto = document.getElementById('navigation-auto')
-        for (index = 0; index < movie.length; index++) {
+        for (index = 0; index < movie.length && index < 11; index++) {
             navAuto.innerHTML += `<div class="auto-btn${index + 1}"></div>`
         }
         sliderContent.innerHTML += `<div class="navigation-manual" id="navigation-manual"></div>`
         navManual = document.getElementById('navigation-manual')
-        for (index = 0; index < movie.length; index++) {
-            navManual.innerHTML +=`<label for="radio${index+1}" class="manual-btn"></label>`
+        for (index = 0; index < movie.length && index < 11; index++) {
+            navManual.innerHTML += `<label for="radio${index + 1}" class="manual-btn"></label>`
         }
         document.getElementById('radio1').checked = true
         function nextImg() {
@@ -92,8 +92,11 @@ function slideFunc() {
     })
 }
 function loadMainPage() {
+    fetch(SERVER_URL + 'new')
     header()
     slideFunc()
+
+
     cards = document.getElementById('cards')
 
     fetch(SERVER_URL, { method: "GET" }).then((res) => res.json()).then(movie => {
@@ -171,12 +174,14 @@ function loadMoviePage() {
 
 
         movieImage.innerHTML = `<img src="${movie[0].imageIndex}" alt="">`
+
         movieContent.innerHTML = (`
                     <h1>${movie[0].name}</h1>
                     <h2>Sinopse:</h2>
                     <p>${movie[0].synopsis}</p>
                     <h2>Avaliação:${movie[0].assessment}/10</h2>
                     <h2>Diretor:${movie[0].director}</h2>
+                    <img src="img/star.png" alt="star" id="star" class="star" onclick="favorite()">
                     `)
         footerLink.innerHTML = (
             `
@@ -184,12 +189,42 @@ function loadMoviePage() {
         <a href="${movie[0].link}" target="_blank" id="youtubeLink"><button class="youtube" id="youtube"><img src="img/youtube icon.png" alt="Youtube"><h2>Trailer no Youtube</h2></button></a>
                     `
         )
-
+        
+        if (movie[0].favorite) {
+            document.getElementById('star').src = 'img/star2.png'
+        } else {
+            document.getElementById('star').src = 'img/star.png'
+        }
 
 
 
     }).catch(erro => { document.location.href = 'error.html' })
 
+}
+function favorite() {
+    let movieid = localStorage.getItem(1)
+    fetch(`${SERVER_URL}?inputId=${movieid}`, { method: "GET" }).then((res) => res.json()).then(movie => {
+
+        if (movie[0].favorite) {
+            let favorite = false
+            fetch(SERVER_URL, {
+                method: 'PUT', body: JSON.stringify({ favorite, movieid }), headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json'
+                }
+            })
+        }
+        else {
+            let favorite = true
+            fetch(SERVER_URL, {
+                method: 'PUT', body: JSON.stringify({ favorite, movieid }), headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json'
+                }
+            })
+        }
+        loadMoviePage()
+    })
 }
 function setMovie(id) {
 
@@ -199,6 +234,28 @@ function setMovie(id) {
 
 }
 //#region Top 10
+function favoriteLoad(){
+    header()
+    main = document.getElementById('main')
+    fetch(`${SERVER_URL}?favorite=true`, { method: "GET" }).then((res) => res.json()).catch(erro => { document.location.href = 'error.html' }).then(movie => {
+        for (index = 0; index < movie.length; index++) {
+            main.innerHTML += (
+            `<a href="movie.html" onclick="setMovie(${movie[index].id})">
+                <section class="favoriteCard" id="favoriteCard">
+                 <div class="favoriteImg" id="favoriteImg">
+                <img src="${movie[index].imageIndex}" alt="miranha">
+            </div>
+            <div class="favoriteContent" id="favoriteContent">
+                <h2>${movie[index].name}</h2>
+                <p>${movie[index].synopsis.substring(0, 200)}${movie[index].synopsis.length > 200 ? '...' : ''}</p>
+                <p>Diretor: ${movie[index].director}</p>
+                <h2>Nota:${movie[index].assessment}/10</h2>
+            </div>
+            </section>
+            </a>`)
+        }
+    })
+}
 function top10Load() {
     header()
     main = document.getElementById('main')
