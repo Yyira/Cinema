@@ -128,6 +128,14 @@ img {
     transition: 250ms;
     transform: scale(1.1);
 }
+.starCard{
+    
+    position: absolute;
+    padding: 5px;
+    width: 30%;
+    z-index: 3;
+    
+}
 
 .card {
 
@@ -135,17 +143,15 @@ img {
 
 }
 
-.cards img {
+.cards img, .starCard img {
     width: 100%;
     height: 100%;
-    position: relative;
-    opacity: 80%;
 }
 
 .leg {
     width: 150px;
     height: 250px;
-    display: flex;
+    display: block;
     z-index: 1;
     padding: 0%;
     left: auto;
@@ -160,6 +166,7 @@ img {
 .leg h2 {
     font-size: 20px;
     margin: 0;
+    margin-top: 225px;
     color: #ffffff;
 }
 
@@ -191,9 +198,16 @@ img {
     border: solid 10px #555E88;
 }
 
+
+
 .star {
     cursor: pointer;
     width: 10%;
+    transition: 500ms;
+}
+.star:hover{
+    scale: 1.1;
+    transition: 500ms;
 }
 
 .movie_content {

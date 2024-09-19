@@ -39,6 +39,7 @@ server.put("/filmes", (request) => {
     movie.favorite = favorite
 
     database.favorite(movie, movieid,)
+    return replay.status(201).send()
 })
 
 server.listen({
